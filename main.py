@@ -9,7 +9,7 @@ from time import sleep
 from params import store_time
 #import sys
 
-sleep(3)
+sleep(5)
 
 #################################################
 # 定数
@@ -209,6 +209,8 @@ def correct_time(buff, rtc_write):
     #print("d: "+str(date))
     day = 2
     hour = ascii_to_num(buff[7])*10 + ascii_to_num(buff[8]) + 9
+    if hour >25:
+        hour = hour-24
     #print("h: "+str(hour))
     mini = ascii_to_num(buff[9])*10 + ascii_to_num(buff[10])
     #print("m: "+str(mini))
@@ -221,6 +223,19 @@ def correct_time(buff, rtc_write):
     return 0
 
 #################################################
+# gpsからデータを受信。
+# input : GPS(UARTオブジェクト)
+# output: GPSからのデータ byte
+#################################################
+def read_gps(gps):
+    i = 0
+    while i < 2:
+        if gps.any() > 26:
+            buffer = gps.read()
+            i = i+1
+    return buffer
+
+#################################################
 # 割り込み
 #################################################
 def callback(pin):
@@ -229,11 +244,7 @@ def callback(pin):
     global ds_rtc
     ledRed.high()
     i=0
-    while i <2:
-        if uart.any()>26:
-            b=uart.read()
-            i=i+1
-            #print(b)
+    b= read_gps(uart)
     correct_time(b,ds_rtc) #後で変更
     ledRed.low()
     return 0
@@ -249,7 +260,6 @@ sw.irq(trigger=Pin.IRQ_FALLING, handler=callback)
 
 i2c = I2C(1,scl = Pin(3),sda = Pin(2), freq=100000)
 ds_rtc = DS1307(i2c)
-#ds_rtc.datetime((2022, 11, 13, 1, 21, 58, 30))#Y,M,D,D,h,m,s,f
 sleep(1)
 uart = UART(0, baudrate=9600, tx=Pin(0), rx=Pin(1))#GPS
 #state = disable_irq()
@@ -263,8 +273,7 @@ def main():
     global sw
     global i2c
     global ds_rtc
-    i=0
-    j=0
+
     #
     # 変数定義
     time_s = store_time(0,0,0,0,0,0,0) #h,h,m,m,s,s,f
@@ -274,41 +283,23 @@ def main():
     display_init(i2c)
     display_off(i2c)
 
-    while i <2:
-        if uart.any()>26:
-            buf=uart.read()
-            i=i+1
-    correct_time(buf,ds_rtc) #後で変更
+    buf=read_gps(uart)
+    correct_time(buf,ds_rtc)
     sleep(1)
     print("#"+str(ds_rtc.datetime()))
     ledRed.low()
-    # loop処理
-    #for i in range(100):
+
     while (1):
-        #try:
         #enable_irq(state)
         rtc_now = ds_rtc.datetime()
         time_s = update_time(rtc_now) #rtcから構造体にデータ取得
         display_out(time_s,i2c)
-        #if uart.any()>26:
-        #    buf=uart.read()
-            #print(buf)
         sleep(0.5)
-        if ((time_s.hour_L==2 and time_s.hour_R==3 and time_s.min_L == 5 and time_s.min_R == 9 and time_s.sec_L == 5 and time_s.sec_R >= 9) or (time_s.hour_L==0 and time_s.hour_R==0 and time_s.min_L == 0 and time_s.min_R == 0 and time_s.sec_L == 0 and time_s.sec_R < 1) ):
-            print("update")
+        if ((time_s.hour_L==1 and time_s.hour_R==1 and time_s.min_L == 5 and time_s.min_R == 9 and time_s.sec_L == 5 and time_s.sec_R >= 9) or (time_s.hour_L==1 and time_s.hour_R==2 and time_s.min_L == 0 and time_s.min_R == 0 and time_s.sec_L == 0 and time_s.sec_R < 1) ):
             led25.high()
-            while j <2:
-                if uart.any()>26:
-                    buf=uart.read()
-                    j=j+1
-                correct_time(buf,ds_rtc)
-            if j >=2:
-                j=0
+            buf=read_gps(uart)
+            correct_time(buf,ds_rtc)
             led25.low()
-        #disable_irq(state)
-        #
-        #except:
-        #    print("error")
     print("stop")
 
 if __name__ == '__main__':
