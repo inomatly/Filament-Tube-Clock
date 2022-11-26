@@ -47,7 +47,7 @@ watch.pdfを参照。
 |15Ω|6||https://akizukidenshi.com/catalog/g/gR-09429/|
 |0.1µF|6||https://akizukidenshi.com/catalog/g/gP-00090/|
 
-[新ＧＰＳ世界時計キット（ＧＰＳモジュール付）](https://akizukidenshi.com/catalog/g/gK-11965/)
+[ＧＰＳ受信機キット　１ＰＰＳ出力付き　「みちびき」２機受信対応](https://akizukidenshi.com/catalog/g/gK-09991/)
 
 # OSS
 
