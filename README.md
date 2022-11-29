@@ -58,3 +58,11 @@ watch.pdfを参照。
 >
 >MIT License
 >Copyright (c) 2018 Mike Causer
+
+# GPSに関して
+
+[ＧＰＳ受信機キット　１ＰＰＳ出力付き　「みちびき」２機受信対応](https://akizukidenshi.com/catalog/g/gK-09991/)はMiniGPSを使用して設定を下記に変更する。
+
+- baudrate=115200
+- GPZDAのみ
+- 更新周期はお好みで。5Hzか10Hzくらいでしょうか。
