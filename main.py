@@ -233,8 +233,10 @@ def read_gps(gps):
         if gps.any() > 26:
             buffer = gps.read()
             i = i+1
+            #print("hour"+str(ascii_to_num(buffer[7])*10 + ascii_to_num(buffer[8])))
+            if ((ascii_to_num(buffer[7])*10 + ascii_to_num(buffer[8]))>24)or((ascii_to_num(buffer[7])*10 + ascii_to_num(buffer[8]))<0):
+                i=0
     return buffer
-
 #################################################
 # 割り込み
 #################################################
@@ -261,7 +263,7 @@ sw.irq(trigger=Pin.IRQ_FALLING, handler=callback)
 i2c = I2C(1,scl = Pin(3),sda = Pin(2), freq=100000)
 ds_rtc = DS1307(i2c)
 sleep(1)
-uart = UART(0, baudrate=9600, tx=Pin(0), rx=Pin(1))#GPS
+uart = UART(0, baudrate=115200, tx=Pin(0), rx=Pin(1))#GPS
 #state = disable_irq()
 
 #################################################
@@ -274,7 +276,6 @@ def main():
     global i2c
     global ds_rtc
 
-    #
     # 変数定義
     time_s = store_time(0,0,0,0,0,0,0) #h,h,m,m,s,s,f
     # 初期化処理
@@ -285,6 +286,7 @@ def main():
 
     buf=read_gps(uart)
     correct_time(buf,ds_rtc)
+
     sleep(1)
     print("#"+str(ds_rtc.datetime()))
     ledRed.low()
