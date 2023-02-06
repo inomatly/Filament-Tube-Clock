@@ -26,7 +26,7 @@ watch.pdfを参照。
 
 |NAME|Quantity|memo|URL|
 |----|--------|----|---|
-|ＰＩＣ１６Ｆ６４８Ａ－Ｉ／Ｐ|1||https://akizukidenshi.com/catalog/g/gI-00466/|
+|Raspberry Pi Pico|1||https://akizukidenshi.com/catalog/g/gM-16132/|
 |IV-9 |6|フィラメント菅|https://nixie-tube.com/shop/1_76.html|
 |5V2A|1|1Aで十分|https://akizukidenshi.com/catalog/g/gM-01801/|
 |DCジャック|1|2.1mm|https://akizukidenshi.com/catalog/g/gC-09408/|
@@ -46,8 +46,7 @@ watch.pdfを参照。
 |1kΩ|2|I2Cバス用|https://akizukidenshi.com/catalog/g/gR-25102/|
 |15Ω|6||https://akizukidenshi.com/catalog/g/gR-09429/|
 |0.1µF|6||https://akizukidenshi.com/catalog/g/gP-00090/|
-
-[ＧＰＳ受信機キット　１ＰＰＳ出力付き　「みちびき」２機受信対応](https://akizukidenshi.com/catalog/g/gK-09991/)
+|ＧＰＳ受信機キット　１ＰＰＳ出力付き　「みちびき」|1||https://akizukidenshi.com/catalog/g/gK-09991/|
 
 # OSS
 
@@ -61,7 +60,7 @@ watch.pdfを参照。
 
 # GPSに関して
 
-[ＧＰＳ受信機キット　１ＰＰＳ出力付き　「みちびき」２機受信対応](https://akizukidenshi.com/catalog/g/gK-09991/)はMiniGPSを使用して設定を下記に変更する。
+[ＧＰＳ受信機](https://akizukidenshi.com/catalog/g/gK-09991/)はMiniGPSを使用して設定を下記に変更する。
 
 - baudrate=115200
 - GPZDAのみ
