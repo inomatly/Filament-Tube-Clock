@@ -18,6 +18,8 @@ Filament Tube Clock. Developing with microPython or C.2022/10~
 watch.pdfを参照。
 基板データは非公開。
 
+なお，フィラメント菅部分は「7セグみたいなものだから」と適当に書きました。雰囲気で読んでください。
+
 ## 加工
 
 [onshape](https://cad.onshape.com/documents/2ef8b39e419f2c465de1c02f/w/79a8761cf37ad37e1899c9b7/e/8a61e6004c59a43205288173?renderMode=0&uiState=6300f7f17d54bd0869f3cc04)
