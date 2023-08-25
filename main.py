@@ -7,7 +7,7 @@ from machine import I2C, Pin, RTC, UART, disable_irq, enable_irq
 from ds1307 import DS1307
 from time import sleep
 from params import store_time
-#import sys
+from numeric_conversion_Fnc import tens_place, ones_place, ascii_to_num, dec_to_displayNum
 
 sleep(5)
 
