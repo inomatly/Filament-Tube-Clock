@@ -1,3 +1,5 @@
+from params import store_time, ADR_H, ADR_M, ADR_S, NUM_R, NUM_L, DIR_A, DIR_B, ALL_ZERO, ALL_ONE, NUM_ZERO, NUM_ONE, NUM_TWO, NUM_THREE, NUM_FOUR, NUM_FIVE, NUM_SIX, NUM_SEVEN, NUM_EIGHT, NUM_NINE, NUM_DOT
+
 #################################################
 # input:hexでもdecでも可。pythonの謎。
 # output: 10の位を返す
@@ -45,16 +47,16 @@ def ascii_to_num(ascii):
 # output: b'\x00'など，バイナリ。
 #################################################
 def dec_to_displayNum(decnum: int):
-    global NUM_ZERO
-    global NUM_ONE
-    global NUM_TWO
-    global NUM_THREE
-    global NUM_FOUR
-    global NUM_FIVE
-    global NUM_SIX
-    global NUM_SEVEN
-    global NUM_EIGHT
-    global NUM_NINE
+    NUM_ZERO
+    NUM_ONE
+    NUM_TWO
+    NUM_THREE
+    NUM_FOUR
+    NUM_FIVE
+    NUM_SIX
+    NUM_SEVEN
+    NUM_EIGHT
+    NUM_NINE
 
     if decnum == 1:
         return NUM_ONE
