@@ -25,6 +25,11 @@ SOFTWARE.
 
 BCD Format:
 https://en.wikipedia.org/wiki/Binary-coded_decimal
+
+# !!!!!!!
+# @tamagogyunyu@gmail.com have changed ;
+# add line 32, 33 
+
 """
 if __name__ == '__main__':
     from micropython import const
