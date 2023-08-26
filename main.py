@@ -2,8 +2,8 @@
 MicroPython, TinyRTC
 @tamagogyunyu@gmail.com
 """
-
-from machine import I2C, Pin, RTC, UART, disable_irq, enable_irq
+if __name__ == '__main__':
+    from machine import I2C, Pin, RTC, UART, disable_irq, enable_irq
 from ds1307 import DS1307
 from time import sleep
 from params import ADR_H, ADR_M, ADR_S, NUM_R, NUM_L, DIR_A, DIR_B, ALL_ZERO, ALL_ONE, NUM_ZERO, NUM_ONE, NUM_TWO, NUM_THREE, NUM_FOUR, NUM_FIVE, NUM_SIX, NUM_SEVEN, NUM_EIGHT, NUM_NINE, NUM_DOT, store_time
@@ -89,6 +89,7 @@ def update_time(now):
 # output: rtcオブジェクト内部のメモリに書き込み
 #################################################
 def correct_time(buff, rtc_write):
+    #値がおかしいときの設計が甘い。
     #print(str(buff)+"type: "+str(type(buff))) 
     year = ascii_to_num(buff[24])*1000+ascii_to_num(buff[25])*100 + ascii_to_num(buff[26])*10 + ascii_to_num(buff[27])
     #print("Y: "+str(year))
@@ -117,6 +118,7 @@ def correct_time(buff, rtc_write):
 # output: GPSからのデータ byte
 #################################################
 def read_gps(gps):
+    # bufferの文字数に関しての設計が甘い。buf[7]が無い，1文字も入っていないなど。
     i = 0
     while i < 2:
         if gps.any() > 26:
@@ -143,17 +145,18 @@ def callback(pin):
 #################################################
 # configuration
 #################################################
-led25 = Pin(25, Pin.OUT)
-ledRed = Pin(15, Pin.OUT, Pin.PULL_UP)
+if __name__ == '__main__':
+    led25 = Pin(25, Pin.OUT)
+    ledRed = Pin(15, Pin.OUT, Pin.PULL_UP)
 
-sw = Pin(14, Pin.IN, Pin.PULL_UP)
-sw.irq(trigger=Pin.IRQ_FALLING, handler=callback)
+    sw = Pin(14, Pin.IN, Pin.PULL_UP)
+    sw.irq(trigger=Pin.IRQ_FALLING, handler=callback)
 
-i2c = I2C(1,scl = Pin(3),sda = Pin(2), freq=100000)
-ds_rtc = DS1307(i2c)
-sleep(1)
-uart = UART(0, baudrate=115200, tx=Pin(0), rx=Pin(1))#GPS
-#state = disable_irq()
+    i2c = I2C(1,scl = Pin(3),sda = Pin(2), freq=100000)
+    ds_rtc = DS1307(i2c)
+    sleep(1)
+    uart = UART(0, baudrate=115200, tx=Pin(0), rx=Pin(1))#GPS
+    #state = disable_irq()
 
 #################################################
 # main関数

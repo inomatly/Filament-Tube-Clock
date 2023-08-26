@@ -1,6 +1,10 @@
 import numeric_conversion_Fnc as target_ncFnc
 import pytest
 
+###############################################
+# 単体テスト
+###############################################
+
 class TestNumericConversionFnc:
     # tens_placeのテスト
     def test_tens_place(self):
