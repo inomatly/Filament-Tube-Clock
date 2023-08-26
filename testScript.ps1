@@ -1,0 +1,1 @@
+python -m pytest --html=reports/report.html --junitxml=reports/report.xml --cov=./ --cov-branch --cov-report html:reports/cov.html
