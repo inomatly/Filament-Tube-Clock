@@ -1,1 +1,3 @@
-python -m pytest --html=reports/report.html --junitxml=reports/report.xml --cov=./ --cov-branch --cov-report html:reports/cov.html
+$get_date = Get-Date -Format "yyyyMMddhhmmssss"
+python -m pytest --html=reports/report_$get_date.html --junitxml=reports/report_$get_date.xml --cov=./ --cov-branch --cov-report html:reports/cov.html
+python .\analysis.py

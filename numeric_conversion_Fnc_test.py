@@ -96,3 +96,7 @@ class TestNumericConversionFnc:
         
     def test_dec_to_displayNum_error(self):
         assert target_ncFnc.dec_to_displayNum(ord('a')) == 0
+
+# analysis.pyの確認用。必ず失敗するテスト。
+#    def test_dec_to_displayNum_should_fail(self):
+#      assert target_ncFnc.dec_to_displayNum(ord('a')) == 1

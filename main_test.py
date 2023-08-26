@@ -32,7 +32,7 @@ class UARTStub:
 
     def any(self):
         return len(self.buffer) if self.buffer else 0
-
+ 
     def read(self):
         self.count += 1
         if self.count > 5 :
